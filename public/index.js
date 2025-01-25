@@ -1,8 +1,22 @@
 const socket = io('/');
-const peer = new Peer({
+const peer = new Peer(undefined, {
   config: {
     iceServers: [
-      { urls: 'stun:stun.l.google.com:19302' } // Google's free STUN server
+      {
+        urls: ['stun:bn-turn2.xirsys.com']
+      },
+      {
+        username: 'CmuzOjzz6rF22e532rDyWG9xztn5VOiJHosrUUavii_Q1-E39RNdjDEG5AVuX4aFAAAAAGb7iKRBeXVzaA==',
+        credential: '14f0eaac-7fb6-11ef-a4eb-0242ac140004',
+        urls: [
+          'turn:bn-turn2.xirsys.com:80?transport=udp',
+          'turn:bn-turn2.xirsys.com:3478?transport=udp',
+          'turn:bn-turn2.xirsys.com:80?transport=tcp',
+          'turn:bn-turn2.xirsys.com:3478?transport=tcp',
+          'turns:bn-turn2.xirsys.com:443?transport=tcp',
+          'turns:bn-turn2.xirsys.com:5349?transport=tcp'
+        ]
+      }
     ]
   }
 });
@@ -80,4 +94,3 @@ function addVideo(video, stream) {
   });
   videoGrid.append(video);
 }
-
