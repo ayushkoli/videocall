@@ -1,5 +1,12 @@
 const socket = io('/');
-const peer = new Peer();
+const peer = new Peer({
+  config: {
+    iceServers: [
+      { urls: 'stun:stun.l.google.com:19302' } // Google's free STUN server
+    ]
+  }
+});
+
 let myVideoStream;
 let myId;
 const videoGrid = document.getElementById('videoDiv');
@@ -73,3 +80,4 @@ function addVideo(video, stream) {
   });
   videoGrid.append(video);
 }
+
