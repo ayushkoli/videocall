@@ -4,44 +4,79 @@
     <meta charset="utf-8" />
     <title>Video App</title>
     <style>
-      * {
+     * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f4f8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
         margin: 0;
       }
+
       #videoDiv {
         display: grid;
-        grid-gap: 10px;
+        grid-gap: 20px;
+        padding: 20px;
+        max-width: 90%;
         height: 80%;
-        position: relative;
-        grid-template-columns: repeat(auto-fill, 300px);
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         grid-auto-rows: 300px;
+        overflow-y: auto;
       }
+
       #footer {
         width: 100%;
         height: 50px;
-        background-color: white;
+        background-color: #ffffff;
         display: flex;
         justify-content: center;
-        flex: 1;
-        border-bottom: 1px solid grey;
-        margin-top: 10px;
+        align-items: center;
+        border-top: 1px solid #e0e0e0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
       }
+
       button {
-        height: 30px;
-        width: 80px;
-        margin-top: 10px;
-        text-align: center;
-        border-radius: 10px;
-        outline: none;
+        height: 40px;
+        width: 100px;
+        border-radius: 20px;
         border: none;
-        text-decoration: none;
-        background-color: red;
+        background-color: #ff4757;
+        color: #ffffff;
+        font-weight: bold;
         cursor: pointer;
+        transition: background-color 0.3s;
       }
+
+      button:hover {
+        background-color: #e84142;
+      }
+
       video {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border: 2px solid white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 2px solid #e0e0e0;
+        transition: transform 0.3s;
+      }
+
+      video:hover {
+        transform: scale(1.05);
       }
     </style>
     <script type="text/javascript">
