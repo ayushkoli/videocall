@@ -142,8 +142,3 @@ Access the app at 👉 `http://localhost:3000`
 
 ---
 
-💬 *For additional help or questions, feel free to reach out!*
-
----
-
-Would you like me to format this further for GitHub (with emoji headings, collapsible sections, and syntax highlighting)?
