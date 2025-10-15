@@ -1,5 +1,4 @@
 # videocall
-Here’s the **complete content** of your *Video Chat Application Documentation* — ready to be copied directly into your `README.md` file 👇
 
 ---
 
@@ -60,8 +59,8 @@ public/         → Contains static assets (JavaScript and CSS files)
 #### 1. Clone the Repository
 
 ```bash
-git clone <repository_url>
-cd <repository_folder>
+git clone https://github.com/ayushkoli/videocall.git
+cd videocall
 ```
 
 #### 2. Install Dependencies
@@ -139,20 +138,7 @@ Access the app at 👉 `http://localhost:3000`
 
 ---
 
-## 🔮 Future Improvements
 
-* Add a **chat feature** for text communication
-* Implement **screen sharing**
-* Add **user authentication** and **room security**
-* Optimize **UI for mobile devices**
-
----
-
-## 🙌 Credits
-
-* **PeerJS** → Simplifies WebRTC implementation
-* **Xirsys** → Provides free TURN/STUN servers
-* **Render** → Deployment platform
 
 ---
 
