@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title>Video App</title>
     <style>
-       /* Reset and global styles */
+      /* Reset and global styles */
 * {
     margin: 0;
     padding: 0;
@@ -61,6 +61,15 @@
     }
     100% {
         background-position: 1000px 0;
+    }
+}
+
+@keyframes borderRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
 
@@ -150,6 +159,7 @@ body::after {
         transparent
     );
     animation: shimmer 3s infinite;
+    pointer-events: none;
 }
 
 #videoDiv::-webkit-scrollbar {
@@ -197,131 +207,110 @@ body::after {
 }
 
 button {
-    height: 50px;
-    padding: 0 32px;
+    height: 52px;
+    padding: 0 36px;
     border: none;
     color: #ffffff;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     display: flex;
     align-items: center;
     justify-content: center;
-    letter-spacing: 0.5px;
-    border-radius: 25px;
+    letter-spacing: 1px;
+    border-radius: 26px;
     text-transform: uppercase;
-    font-size: 0.85rem;
-}
-
-/* Shimmer effect on buttons */
-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-    );
-    transition: left 0.5s ease;
-}
-
-button:hover::before {
-    left: 100%;
-}
-
-/* Glow effect */
-button::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 25px;
-    padding: 2px;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-button:hover::after {
-    opacity: 1;
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(10px);
 }
 
 /* Share button */
 .share-btn {
-    background: #000000;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    position: relative;
     box-shadow: 
-        0 4px 15px rgba(102, 126, 234, 0.4),
-        0 0 20px rgba(118, 75, 162, 0.3),
+        0 0 20px rgba(102, 126, 234, 0.3),
         inset 0 0 20px rgba(102, 126, 234, 0.1);
 }
 
 .share-btn::before {
     content: '';
     position: absolute;
-    inset: -2px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 25px;
+    inset: -3px;
+    background: linear-gradient(135deg, #667eea, #764ba2, #667eea, #764ba2);
+    background-size: 300% 300%;
+    border-radius: 26px;
     z-index: -1;
+    animation: gradientShift 4s ease infinite;
+    opacity: 0.8;
+}
+
+.share-btn::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(135deg, #667eea, #764ba2, #667eea, #764ba2);
+    background-size: 300% 300%;
+    border-radius: 26px;
+    z-index: -2;
+    filter: blur(15px);
+    animation: gradientShift 4s ease infinite;
+    opacity: 0.6;
 }
 
 .share-btn:hover {
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-2px);
     box-shadow: 
-        0 8px 30px rgba(102, 126, 234, 0.6),
-        0 0 40px rgba(118, 75, 162, 0.5),
-        inset 0 0 30px rgba(102, 126, 234, 0.2);
-    background: rgba(102, 126, 234, 0.1);
+        0 0 30px rgba(102, 126, 234, 0.5),
+        inset 0 0 30px rgba(102, 126, 234, 0.15);
 }
 
 .share-btn:active {
-    transform: translateY(-1px) scale(1.02);
+    transform: translateY(0);
 }
 
 /* Leave button */
 .leave-btn {
-    background: #000000;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    position: relative;
     box-shadow: 
-        0 4px 15px rgba(255, 65, 108, 0.4),
-        0 0 20px rgba(255, 75, 43, 0.3),
+        0 0 20px rgba(255, 65, 108, 0.3),
         inset 0 0 20px rgba(255, 65, 108, 0.1);
 }
 
 .leave-btn::before {
     content: '';
     position: absolute;
-    inset: -2px;
-    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
-    border-radius: 25px;
+    inset: -3px;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b, #ff416c, #ff4b2b);
+    background-size: 300% 300%;
+    border-radius: 26px;
     z-index: -1;
+    animation: gradientShift 4s ease infinite;
+    opacity: 0.8;
+}
+
+.leave-btn::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b, #ff416c, #ff4b2b);
+    background-size: 300% 300%;
+    border-radius: 26px;
+    z-index: -2;
+    filter: blur(15px);
+    animation: gradientShift 4s ease infinite;
+    opacity: 0.6;
 }
 
 .leave-btn:hover {
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-2px);
     box-shadow: 
-        0 8px 30px rgba(255, 65, 108, 0.6),
-        0 0 40px rgba(255, 75, 43, 0.5),
-        inset 0 0 30px rgba(255, 65, 108, 0.2);
-    background: rgba(255, 65, 108, 0.1);
+        0 0 30px rgba(255, 65, 108, 0.5),
+        inset 0 0 30px rgba(255, 65, 108, 0.15);
 }
 
 .leave-btn:active {
-    transform: translateY(-1px) scale(1.02);
+    transform: translateY(0);
 }
 
 video {
@@ -359,6 +348,149 @@ video:hover {
 #videoDiv > *:nth-child(4) { animation-delay: 0.4s; }
 #videoDiv > *:nth-child(5) { animation-delay: 0.5s; }
 #videoDiv > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Media Queries for Responsive Design */
+
+/* Tablets and smaller laptops */
+@media (max-width: 1024px) {
+    #videoDiv {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-auto-rows: 280px;
+        padding: 24px;
+        grid-gap: 20px;
+        max-width: 96%;
+    }
+
+    #footer {
+        height: 65px;
+        gap: 16px;
+    }
+
+    button {
+        height: 48px;
+        padding: 0 28px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+    body {
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+
+    #videoDiv {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 280px;
+        padding: 20px;
+        grid-gap: 16px;
+        max-width: 92%;
+        height: calc(100vh - 140px);
+        border-radius: 20px;
+    }
+
+    #footer {
+        height: 60px;
+        gap: 12px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    button {
+        height: 44px;
+        padding: 0 24px;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+        border-radius: 22px;
+    }
+
+    video {
+        border-radius: 16px;
+    }
+
+    /* Reduce particle effects on mobile for better performance */
+    body::before {
+        animation-duration: 30s;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    #videoDiv {
+        grid-auto-rows: 240px;
+        padding: 16px;
+        grid-gap: 12px;
+        max-width: 90%;
+        height: calc(100vh - 120px);
+    }
+
+    #footer {
+        height: 56px;
+        gap: 10px;
+    }
+
+    button {
+        height: 40px;
+        padding: 0 20px;
+        font-size: 0.75rem;
+        border-radius: 20px;
+    }
+
+    .share-btn::before,
+    .share-btn::after,
+    .leave-btn::before,
+    .leave-btn::after {
+        inset: -2px;
+        filter: blur(10px);
+    }
+
+    video {
+        border-radius: 12px;
+    }
+
+    #videoDiv::-webkit-scrollbar {
+        width: 6px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+    #videoDiv {
+        grid-auto-rows: 200px;
+        padding: 12px;
+        grid-gap: 10px;
+    }
+
+    button {
+        height: 38px;
+        padding: 0 16px;
+        font-size: 0.7rem;
+    }
+
+    #footer {
+        height: 52px;
+        gap: 8px;
+    }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+    #videoDiv {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        grid-auto-rows: 200px;
+        height: calc(100vh - 100px);
+    }
+
+    #footer {
+        height: 55px;
+    }
+
+    button {
+        height: 42px;
+        padding: 0 22px;
+    }
+}
     </style>
     <script type="text/javascript">
         var roomID = "<%= RoomId %>";
@@ -393,4 +525,5 @@ video:hover {
 </body>
 
 </html>
+
 
